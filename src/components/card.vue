@@ -11,7 +11,7 @@
           >Description</v-btn>
         </v-row>
         <v-row>
-          <v-btn color="secoundrey mr-2" @click="editDialog = true" class="my-2 white--text">edit</v-btn>
+          <v-btn color="secoundrey mr-2" @click="openEdit()" class="my-2 white--text">edit</v-btn>
           <v-btn color="secoundrey ml-2" @click="deletes(item)" class="my-2 white--text">delete</v-btn>
         </v-row>
       </v-col>
@@ -37,13 +37,13 @@
         <v-card-title class="text-h5 grey descriptionDialogTitle">edit</v-card-title>
         <v-row class="ma-0 d-flex justify-center">
           <v-col cols="10">
-            <v-text-field dark label="Title" solo rounded style="height: 50px" v-model="item.title"></v-text-field>
+            <v-text-field dark label="Title" solo rounded style="height: 50px" v-model="editing.title"></v-text-field>
           </v-col>
         </v-row>
 
         <v-row class="ma-0 d-flex justify-center">
           <v-col cols="10">
-            <v-textarea dark solo name="input-7-4" label="Description" v-model="item.description"></v-textarea>
+            <v-textarea dark solo name="input-7-4" label="Description" v-model="editing.description"></v-textarea>
           </v-col>
         </v-row>
 
@@ -54,7 +54,7 @@
             </v-avatar>
             <input class="d-none white--text" ref="imgUplod" type="file" dark @change="saveImg" />
             <div id="preview">
-              <v-img v-if="item.img" :src="item.img" />
+              <v-img v-if="editing.img" :src="editing.img" />
             </div>
           </v-col>
         </v-row>
@@ -78,7 +78,8 @@ export default {
     return {
       descriptionDialog: false,
       editDialog: false,
-      description: null
+      description: null,
+      editing: null
     };
   },
 
@@ -92,6 +93,11 @@ export default {
       edit: "recipes/edit",
       deletes: "recipes/delete"
     }),
+
+    openEdit(){
+      this.editing = this.item;
+      this.editDialog = true;
+    }
 
     edits() {
       this.edit(this.item);
