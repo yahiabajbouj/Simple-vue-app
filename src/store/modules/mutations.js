@@ -1,6 +1,5 @@
 const mutations = {
     add(state, item) {
-        console.log(item);
         const items = localStorage.getItem("items") == null ? [] : JSON.parse(localStorage.getItem("items"));
         item.id = state.data.length;
         items.push(item);
