@@ -79,7 +79,7 @@ export default {
       descriptionDialog: false,
       editDialog: false,
       description: null,
-      editing: null
+      editing: {}
     };
   },
 
@@ -95,12 +95,13 @@ export default {
     }),
 
     openEdit(){
-      this.editing = this.item;
+      Object.assign(this.editing, this.item);
       this.editDialog = true;
-    }
+    },
 
     edits() {
-      this.edit(this.item);
+      this.edit(this.editing);
+      Object.assign(this.item, this.editing);
       this.editDialog = false;
     },
 

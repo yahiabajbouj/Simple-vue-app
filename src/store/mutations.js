@@ -16,7 +16,6 @@ const mutations = {
     logout(state) {
         localStorage.setItem("isLogin", false);
         state.isLogin = false;
-        state.user = null;
     }
 }
 

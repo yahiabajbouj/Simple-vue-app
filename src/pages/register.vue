@@ -146,14 +146,13 @@ export default {
       if (this.$v.$invalid) return;
       this.loading = true;
       this.suingUpUser(this.form)
-        .then((res) => {
+        .then(() => {
           this.$router.push({ name: "Recipes" });
-          console.log(res);
         })
         .catch((err) => {
           this.snackbar = true;
           this.text = err;
-          console.log(err);
+          console.warn(err);
         })
         .finally(() => {
           this.loading = false;

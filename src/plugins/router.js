@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 const LogIn = () => import('../pages/login.vue');
 const register = () => import('../pages/register.vue');
 const recipes = () => import('../pages/recipes.vue');
- 
+
 Vue.use(VueRouter)
 
 const Routes = [
@@ -16,7 +16,7 @@ const Routes = [
             requiresAuth: false
         }
     },
-    
+
     {
         path: "/register",
         component: register,
@@ -43,7 +43,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (!localStorage.getItem('isLogin')) {
+        let isLogin = localStorage.getItem('isLogin') == null ? false : localStorage.getItem('isLogin') == 'false'? false : true;
+        if (!isLogin) {
             next({ name: "LogIn" });
         } else {
             next();

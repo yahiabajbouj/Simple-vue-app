@@ -27,7 +27,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   methods: {
     ...mapActions({
-      logoutUser: "login"
+      logoutUser: "logout"
     }),
 
     logOut() {

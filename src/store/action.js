@@ -3,13 +3,13 @@ const action = {
         return new Promise((resolve, reject) => {
             const users = localStorage.getItem("user") == null ? [] : JSON.parse(localStorage.getItem("user"));
             let user = users.find(el => {
-                return el.email == data.email && el.password == data.password
+                return el.email == data.email
             });
             if (user) {
-                reject(false);
+                reject("email used before");
             } else {
                 context.commit('suingUp', data);
-                resolve("email used before");
+                resolve(true);
             }
         });
     },
